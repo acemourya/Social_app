@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-'''
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'social_django',  
+    'social_django',
 
-    'mysite.core',
+    'core',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +53,33 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',  
 ]
+
+AUTHENTICATION_BACKENDS = [
+        'social_core.backends.linkedin.LinkedinOAuth2',
+        'social_core.backends.instagram.InstagramOAuth2',
+        'social_core.backends.facebook.FacebookOAuth2',
+        'django.contrib.auth.backends.ModelBackend',
+]
+
+# social_app/settings.py
+
+# [...]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_URL = 'logout'
+LOGOUT_REDIRECT_URL = 'login'
+
+# [...]
+
+# social_app/settings.py
+
+#[...]
+
+SOCIAL_AUTH_FACEBOOK_KEY = 1739192379517797      # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = "1240a2205de3d3d46ca5470489091b96"
+
+
 
 ROOT_URLCONF = 'scocial_django.urls'
 
@@ -68,8 +95,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 
-                'social_django.context_processors.backends',   
-                'social_django.context_processors.login_redirect', 
+                #'social_django.context_processors.backends',
+                #'social_django.context_processors.login_redirect',
             ],
         },
     },
